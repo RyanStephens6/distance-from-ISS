@@ -1,0 +1,13 @@
+User Story:
+As a amateur space enthusiest
+I want to find the distance between a location and the ISS
+So I can keep an eye out for it
+
+Acceptance Criteria:
+GIVEN I want to find the distance between a location and the ISS
+WHEN I open the webpage
+THEN I see options to put in an address
+WHEN I click submit address
+THEN I can see the distance between my location and the ISS's location
+WHEN I want to save the distance
+THEN the distance is saved to local storage with a timestamp
