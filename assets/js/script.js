@@ -23,4 +23,3 @@ var addressData = fetch(addressLink, {
 
 console.log(issData);
 console.log(addressData);
-
