@@ -23,11 +23,9 @@
       <p id="currentDate"></p>
     </header>
     <aside id="savedBox" class="saved-locations">
-        <h3>Saved Locations</h3>
-        <ul id="userSaved">
-    
-        </ul>
-        <!-- The js will create a list item for each saved location -->
+      <h3>Saved Locations</h3>
+      <ul id="userSaved"></ul>
+      <!-- The js will create a list item for each saved location -->
     </aside>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script
@@ -36,5 +34,38 @@
       crossorigin="anonymous"
     ></script>
     <script src="./assets/js/script.js"></script>
+    <div id="map-div"></div>
+    <div id="details">
+      <!-- Time -->
+      <div>
+        Time:
+        <span class="time"></span>
+      </div>
+      <!-- Latitude -->
+      <div>
+        Latitude:
+        <span class="latitude"></span>
+      </div>
+      <!-- Longitude -->
+      <div>
+        Longitude:
+        <span class="longitude"></span>
+      </div>
+      <!-- Speed -->
+      <div>
+        Speed:
+        <span class="speed"></span>
+      </div>
+      <!-- Altitude -->
+      <div>
+        Altitude:
+        <span class="altitude"></span>
+      </div>
+      <!-- Visibility -->
+      <div>
+        Visibility:
+        <span class="visibility"></span>
+      </div>
+    </div>
   </body>
 </html>
