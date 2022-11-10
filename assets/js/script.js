@@ -9,7 +9,7 @@ async function getAddressCoordinates(addressUrl) {
     let response = await fetch(addressUrl);
     let data = await response.json();
     let addressCoordinates = document.getElementById("address-coordinates");
-    addressCoordinates.textContent = data.features[0].bbox[0] + " " + data.features[0].bbox[1];
+    addressCoordinates.textContent = data.features[0].bbox[1] + " " + data.features[0].bbox[0];
 }
 
 getIssCoordinates("http://api.open-notify.org/iss-now.json")
