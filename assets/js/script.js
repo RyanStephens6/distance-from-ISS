@@ -13,12 +13,11 @@ async function getIssCoordinates(issUrl) {
 
 //This function uses a web API to grab the coordinates of an address
 async function getAddressCoordinates(addressUrl) {
-
-    let response = await fetch(addressUrl);
-    let data = await response.json();
-    let addressCoordinates = document.getElementById("address-coordinates");
-    addressCoordinates.textContent = data.features[0].bbox[1] + " " + data.features[0].bbox[0];
-
+  let response = await fetch(addressUrl);
+  let data = await response.json();
+  let addressCoordinates = document.getElementById("address-coordinates");
+  addressCoordinates.textContent =
+    data.features[0].bbox[1] + " " + data.features[0].bbox[0];
 }
 
 getIssCoordinates("http://api.open-notify.org/iss-now.json");
@@ -96,4 +95,13 @@ function updateDistanceContainer(unitOfMeasurement) {
 }
 
 //Event listner for form
-submitButton.addEventListener("click", handleSubmitButton)
+submitButton.addEventListener("click", handleSubmitButton);
+
+//Current day for header
+function clock() {
+  var date = dayjs().format("MMMM D");
+  var time = dayjs().format("h:mm:ssa");
+  $(currentDate).text(date + ", " + time);
+}
+
+setInterval(clock, 1000);
