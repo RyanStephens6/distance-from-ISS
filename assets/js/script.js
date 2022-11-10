@@ -1,5 +1,6 @@
 var submitButton = document.getElementById("submitBtn");
 
+//This function uses a web API to grab the coordinates of the ISS in real time and store them in an HTML element
 async function getIssCoordinates(issUrl) {
   let response = await fetch(issUrl);
   let data = await response.json();
@@ -8,6 +9,7 @@ async function getIssCoordinates(issUrl) {
     data.iss_position.latitude + " " + data.iss_position.longitude;
 }
 
+//This function uses a web API to grab the coordinates of an address
 async function getAddressCoordinates(addressUrl) {
 
     let response = await fetch(addressUrl);
@@ -19,6 +21,7 @@ async function getAddressCoordinates(addressUrl) {
 
 getIssCoordinates("http://api.open-notify.org/iss-now.json");
 
+//This function takes the address the user input into the submit form and calls the getAddressCoordinates function to find the coordinates of said address. It will also call updateDistanceContainer to display the distance between the ISS and the user address
 function handleSubmitButton() {
     let userInput = document.getElementById("address").value;
     let userInputArray = userInput.split(' ');
@@ -35,6 +38,7 @@ function handleSubmitButton() {
     updateDistanceContainer();
 }
 
+//This function calculates the distance between two sets of coordinates
 //(x1, y1) = (latitude, longitude) ISS coordinates and home address can be interchanged
 function getDistance(x1, y1, x2, y2) {
   let y = x2 - x1;
@@ -43,6 +47,7 @@ function getDistance(x1, y1, x2, y2) {
   return Math.sqrt(x * x + y * y);
 }
 
+//This function updates the distance displayed to the user
 function updateDistanceContainer() {
     var issCoordinates = document.getElementById("iss-coordinates").textContent;
     var issArr = issCoordinates.split(' ');
@@ -58,4 +63,5 @@ function updateDistanceContainer() {
     document.getElementById("distance").value = distance;
 }
 
+//Event listner for form
 submitButton.addEventListener("click", handleSubmitButton)
