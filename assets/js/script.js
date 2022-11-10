@@ -1,3 +1,5 @@
+var submitButton = document.getElementById("submitBtn");
+
 async function getIssCoordinates(issUrl) {
   let response = await fetch(issUrl);
   let data = await response.json();
@@ -16,9 +18,21 @@ async function getAddressCoordinates(addressUrl) {
 }
 
 getIssCoordinates("http://api.open-notify.org/iss-now.json");
-getAddressCoordinates(
-  "https://api.geoapify.com/v1/geocode/search?text=38%20Upper%20Montagu%20Street%2C%20Westminster%20W1H%201LJ%2C%20United%20Kingdom&apiKey=76f8a5221fbe49a7b156d4fddcaeeaad"
-);
+
+function handleSubmitButton() {
+    let userInput = document.getElementById("address").value;
+    let userInputArray = userInput.split(' ');
+    let addressUrl = "https://api.geoapify.com/v1/geocode/search?text="
+    for(let i=0; i<userInputArray.length; i++) {
+        if(i === 0) {
+            addressUrl += userInputArray[i];
+            continue;
+        }
+        addressUrl += "%20" + userInputArray[i];
+    }
+    addressUrl += "&apiKey=76f8a5221fbe49a7b156d4fddcaeeaad";
+    getAddressCoordinates(addressUrl);
+}
 
 function getDistance(x1, y1, x2, y2) {
   let y = x2 - x1;
@@ -26,3 +40,5 @@ function getDistance(x1, y1, x2, y2) {
 
   return Math.sqrt(x * x + y * y);
 }
+
+submitButton.addEventListener("click", handleSubmitButton)
