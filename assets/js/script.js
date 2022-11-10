@@ -17,7 +17,7 @@ getAddressCoordinates("https://api.geoapify.com/v1/geocode/search?text=38%20Uppe
 
 function getDistance(x1, y1, x2, y2){
     let y = x2 - x1;
-    let x = y2 - x1;
+    let x = y2 - y1;
 
     return Math.sqrt(x * x + y * y);
     
