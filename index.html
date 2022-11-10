@@ -24,9 +24,9 @@
     </header>
 
     <!-- Cards for your location and ISS location -->
+    <!-- User Interactive -->
     <section class="d-flex my-5">
       <div class="row justify-content-center">
-        <!-- User Interactive -->
         <div class="card text-bg-dark col-11 col-lg-5 mx-5">
           <img
             class="img-fluid"
@@ -49,16 +49,14 @@
           />
           <div class="card-img-overlay">
             <h5 class="card-title">ISS Current Location</h5>
-            <p class="card-text">
-              <small id="iss-coordinates">ISS coordinates</small>
-            </p>
+            <p class="card-text" id="iss-coordinates">ISS coordinates</p>
           </div>
         </div>
       </div>
     </section>
     <section class="container my-3">
       <!-- User Input Button -->
-      <div class="row justify-content-between">
+      <div class="row">
         <div class="text-bg-dark col-5 mx-5">
           <form action="submit">
             <input
@@ -69,7 +67,7 @@
             />
             <input
               type="button"
-              id="addressBtn"
+              id="submitBtn"
               name="addressBtn"
               value="Submit"
             />
@@ -91,9 +89,11 @@
     </section>
 
     <aside id="savedBox" class="saved-locations">
-      <h3>Saved Locations</h3>
-      <ul id="userSaved"></ul>
-      <!-- The js will create a list item for each saved location -->
+        <h3>Saved Locations</h3>
+        <ul id="userSaved">
+    
+        </ul>
+        <!-- The js will create a list item for each saved location -->
     </aside>
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>

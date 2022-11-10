@@ -1,0 +1,13 @@
+.custom-container {
+  display: flex;
+}
+
+.custom-flex {
+  justify-content: center;
+  flex-flow: row wrap;
+}
+
+#address,
+#distance {
+  width: 25rem;
+}
