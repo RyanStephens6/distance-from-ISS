@@ -25,9 +25,9 @@ getIssCoordinates("http://api.open-notify.org/iss-now.json");
 
 //This function takes the address the user input into the submit form and calls the getAddressCoordinates function to find the coordinates of said address. It will also call updateDistanceContainer to display the distance between the ISS and the user address
 function handleSubmitButton() {
-    let userInput = document.getElementById("address").value;
-    let userInputArray = userInput.split(' ');
-    let addressUrl = "https://api.geoapify.com/v1/geocode/search?text="
+    var userInput = document.getElementById("address").value;
+    var userInputArray = userInput.split(' ');
+    var addressUrl = "https://api.geoapify.com/v1/geocode/search?text="
     for(let i=0; i<userInputArray.length; i++) {
         if(i === 0) {
             addressUrl += userInputArray[i];
@@ -37,7 +37,14 @@ function handleSubmitButton() {
     }
     addressUrl += "&apiKey=76f8a5221fbe49a7b156d4fddcaeeaad";
     getAddressCoordinates(addressUrl);
-    updateDistanceContainer();
+
+    var unitSelector = document.getElementsByName("measurement-unit")
+    for(let i=0; i < unitSelector.length; i++){
+        if(unitSelector[i].checked == true){
+            var unitOfMeasurement = unitSelector[i].value
+        }
+    }
+    updateDistanceContainer(unitOfMeasurement);
 }
 
 //This function calculates the distance between two sets of coordinates
@@ -67,13 +74,13 @@ function getDistance(lat1, lon1, lat2, lon2, unit) {
 		dist = Math.acos(dist);
 		dist = dist * 180/Math.PI;
 		dist = dist * 60 * 1.1515;
-		if (unit=="K") { dist = dist * 1.609344 }
-		if (unit=="N") { dist = dist * 0.8684 }
+		if (unit=="Kilometers") { dist = dist * 1.609344 }
+		if (unit=="Football fields") { dist = dist * 0.8684 }
 		return dist;
 	}
 }
 //This function updates the distance displayed to the user
-function updateDistanceContainer() {
+function updateDistanceContainer(unitOfMeasurement) {
     var issCoordinates = document.getElementById("iss-coordinates").textContent;
     var issArr = issCoordinates.split(' ');
     var issX = issArr[0];
@@ -84,8 +91,8 @@ function updateDistanceContainer() {
     var addressX = addressArr[0];
     var addressY = addressArr[1];
 
-    var distance = getDistance(issX, issY, addressX, addressY);
-    document.getElementById("distance").value = distance;
+    var distance = getDistance(issX, issY, addressX, addressY, unitOfMeasurement);
+    document.getElementById("distance").value = distance.toFixed(2) + " " + unitOfMeasurement;
 }
 
 //Event listner for form
