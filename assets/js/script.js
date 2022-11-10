@@ -1,4 +1,6 @@
 var submitButton = document.getElementById("submitBtn");
+var x
+var y
 
 //This function uses a web API to grab the coordinates of the ISS in real time and store them in an HTML element
 async function getIssCoordinates(issUrl) {
@@ -40,13 +42,36 @@ function handleSubmitButton() {
 
 //This function calculates the distance between two sets of coordinates
 //(x1, y1) = (latitude, longitude) ISS coordinates and home address can be interchanged
-function getDistance(x1, y1, x2, y2) {
-  let y = x2 - x1;
-  let x = y2 - y1;
+// function getDistance(x1, y1, x2, y2) {
+//   let y = x2 - x1;
+//   let x = y2 - y1;
 
-  return Math.sqrt(x * x + y * y);
+//   return Math.sqrt(x * x + y * y);
+// }
+
+
+// nedd to designat the varribles for long, and latt
+function getDistance(lat1, lon1, lat2, lon2, unit) {
+	if ((lat1 == lat2) && (lon1 == lon2)) {
+		return 0;
+	}
+	else {
+		var radlat1 = Math.PI * lat1/180;
+		var radlat2 = Math.PI * lat2/180;
+		var theta = lon1-lon2;
+		var radtheta = Math.PI * theta/180;
+		var dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
+		if (dist > 1) {
+			dist = 1;
+		}
+		dist = Math.acos(dist);
+		dist = dist * 180/Math.PI;
+		dist = dist * 60 * 1.1515;
+		if (unit=="K") { dist = dist * 1.609344 }
+		if (unit=="N") { dist = dist * 0.8684 }
+		return dist;
+	}
 }
-
 //This function updates the distance displayed to the user
 function updateDistanceContainer() {
     var issCoordinates = document.getElementById("iss-coordinates").textContent;
