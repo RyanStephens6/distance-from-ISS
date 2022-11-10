@@ -56,10 +56,10 @@
         </div>
       </div>
     </section>
-    <section class="d-flex my-3">
-      <!-- User input button -->
-      <div class="row justify-content-center">
-        <div class="text-bg-dark col-11 col-lg-5 mx-5">
+    <section class="container my-3">
+      <!-- User Input Button -->
+      <div class="row justify-content-between">
+        <div class="text-bg-dark col-5 mx-5">
           <form action="submit">
             <input
               type="text"
@@ -67,7 +67,25 @@
               name="address"
               placeholder="Your Address"
             />
+            <input
+              type="button"
+              id="addressBtn"
+              name="addressBtn"
+              value="Submit"
+            />
           </form>
+        </div>
+        <!-- Distance Output -->
+        <div class="text-bg-dark col-5 mx-5">
+          <form>
+            <input
+              type="text"
+              id="distance"
+              name="distance"
+              placeholder="It ISS here"
+            />
+          </form>
+          <!-- <p id="distance"></p> -->
         </div>
       </div>
     </section>
