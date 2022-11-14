@@ -1,6 +1,6 @@
 var submitButton = document.getElementById("submitBtn");
-var x
-var y
+var x;
+var y;
 
 //This function uses a web API to grab the coordinates of the ISS in real time and store them in an HTML element
 async function getIssCoordinates(issUrl) {
@@ -55,8 +55,7 @@ function handleSubmitButton() {
 //   return Math.sqrt(x * x + y * y);
 // }
 
-
-// nedd to designat the varribles for long, and latt
+// need to designate the variables for long, and latt
 function getDistance(lat1, lon1, lat2, lon2, unit) {
 	if ((lat1 == lat2) && (lon1 == lon2)) {
 		return 0;
