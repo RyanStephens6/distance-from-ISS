@@ -7,3 +7,15 @@
   border-top-right-radius: 3px;
   border-top-left-radius: 3px;
 }
+/* #details */
+#details {
+  background-color: #2b32b2;
+  padding: 10px;
+  color: #fff;
+  display: flex;
+  width: 800px;
+  max-width: 800px;
+  box-shadow: 7px -2px 8px -1px rgba(0, 0, 0, 0.7);
+  border-bottom-right-radius: 3px;
+  border-bottom-left-radius: 3px;
+}
