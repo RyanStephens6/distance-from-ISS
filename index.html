@@ -45,11 +45,12 @@
     <section class="d-flex my-5">
       <div class="row justify-content-center">
         <div class="card text-bg-dark col-11 col-lg-5 mx-5">
-          <img
+          <!-- <img
             class="img-fluid"
             src="https://via.placeholder.com/1920x1080"
             alt="video placeholder"
-          />
+          /> -->
+          <div id="address-map"></div>
           <div class="card-img-overlay">
             <h5 class="card-title">Your Location</h5>
             <p class="card-text" id="address-coordinates">
@@ -59,11 +60,44 @@
         </div>
         <!-- ISS -->
         <div class="card text-bg-dark col-11 col-lg-5 mx-5">
-          <img
+          <!-- <img
             class="img-fluid"
             src="https://via.placeholder.com/1920x1080"
             alt="video placeholder"
-          />
+          /> -->
+          <div id="map-div"></div>
+          <div id="details">
+            <!-- Time -->
+            <div>
+              Time:
+              <span class="time"></span>
+            </div>
+            <!-- Latitude -->
+            <div>
+              Latitude:
+              <span class="latitude"></span>
+            </div>
+            <!-- Longitude -->
+            <div>
+              Longitude:
+              <span class="longitude"></span>
+            </div>
+            <!-- Speed -->
+            <div>
+              Speed:
+              <span class="speed"></span>
+            </div>
+            <!-- Altitude -->
+            <div>
+              Altitude:
+              <span class="altitude"></span>
+            </div>
+            <!-- Visibility -->
+            <div>
+              Visibility:
+              <span class="visibility"></span>
+            </div>
+          </div>
           <div class="card-img-overlay">
             <h5 class="card-title">ISS Current Location</h5>
             <p class="card-text" id="iss-coordinates">ISS coordinates</p>
@@ -131,48 +165,12 @@
       <ul id="userSaved"></ul>
       <!-- The js will create a list item for each saved location -->
     </aside>
-    <div id="map-div"></div>
-    <div id="details">
-      <!-- Time -->
-      <div>
-        Time:
-        <span class="time"></span>
-      </div>
-      <!-- Latitude -->
-      <div>
-        Latitude:
-        <span class="latitude"></span>
-      </div>
-      <!-- Longitude -->
-      <div>
-        Longitude:
-        <span class="longitude"></span>
-      </div>
-      <!-- Speed -->
-      <div>
-        Speed:
-        <span class="speed"></span>
-      </div>
-      <!-- Altitude -->
-      <div>
-        Altitude:
-        <span class="altitude"></span>
-      </div>
-      <!-- Visibility -->
-      <div>
-        Visibility:
-        <span class="visibility"></span>
-      </div>
-      <div id="address-map"></div>
-      <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-      <script
-        src="https://cdn.jsdelivr.net/npm/dayjs@1.11.3/dayjs.min.js"
-        integrity="sha256-iu/zLUB+QgISXBLCW/mcDi/rnf4m4uEDO0wauy76x7U="
-        crossorigin="anonymous"
-      ></script>
-      <script src="./assets/js/script.js"></script>
-    </div>
-
-    main
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/dayjs@1.11.3/dayjs.min.js"
+      integrity="sha256-iu/zLUB+QgISXBLCW/mcDi/rnf4m4uEDO0wauy76x7U="
+      crossorigin="anonymous"
+    ></script>
+    <script src="./assets/js/script.js"></script>
   </body>
 </html>
