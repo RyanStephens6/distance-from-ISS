@@ -84,6 +84,7 @@ setInterval(findISS, 2000);
 var submitButton = document.getElementById("submitBtn");
 var x;
 var y;
+var string = [];
 
 //Address map
 
@@ -214,8 +215,12 @@ function updateDistanceContainer(unitOfMeasurement) {
   var addressY = addressArr[1];
 
   var distance = getDistance(issX, issY, addressX, addressY, unitOfMeasurement);
-  document.getElementById("distance").value =
-    distance.toFixed(2) + " " + unitOfMeasurement;
+  document.getElementById("distance").value = distance.toFixed(2) + " " + unitOfMeasurement;
+
+  var now = dayjs().format('HH:mm on MM DD YYYY')
+  var userInput = document.getElementById("address").value;
+  string.push({"input": userInput, "distance": distance, "unit": unitOfMeasurement, "time": now});
+  localStorage.setItem("address", JSON.stringify(string));
 }
 
 //Event listner for form
