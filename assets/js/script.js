@@ -129,13 +129,15 @@ async function getIssCoordinates(issUrl) {
 }
 
 //This function uses a web API to grab the coordinates of an address
-async function getAddressCoordinates(addressUrl) {
-  let response = await fetch(addressUrl);
-  let data = await response.json();
-  let addressCoordinates = document.getElementById("address-coordinates");
-  addressCoordinates.textContent =
-    data.features[0].bbox[1] + " " + data.features[0].bbox[0];
-    updateAddress(data.features[0].bbox[1], data.features[0].bbox[0])
+function getAddressCoordinates(addressUrl) {
+    fetch(addressUrl)
+        .then((response) => response.json())
+        .then((data) => {
+        let addressCoordinates = document.getElementById("address-coordinates");
+        addressCoordinates.textContent = data.features[0].bbox[1] + " " + data.features[0].bbox[0];
+        console.log(document.getElementById("address-coordinates").textContent);
+        updateAddress(data.features[0].bbox[1], data.features[0].bbox[0]);
+    })
 }
 
 getIssCoordinates("http://api.open-notify.org/iss-now.json");
@@ -154,6 +156,7 @@ function handleSubmitButton() {
   }
   addressUrl += "&apiKey=76f8a5221fbe49a7b156d4fddcaeeaad";
   getAddressCoordinates(addressUrl);
+  console.log(document.getElementById("address-coordinates").textContent);
 
   var unitSelector = document.getElementsByName("measurement-unit");
   for (let i = 0; i < unitSelector.length; i++) {
@@ -163,15 +166,6 @@ function handleSubmitButton() {
   }
   updateDistanceContainer(unitOfMeasurement);
 }
-
-//This function calculates the distance between two sets of coordinates
-//(x1, y1) = (latitude, longitude) ISS coordinates and home address can be interchanged
-// function getDistance(x1, y1, x2, y2) {
-//   let y = x2 - x1;
-//   let x = y2 - y1;
-
-//   return Math.sqrt(x * x + y * y);
-// }
 
 // need to designate the variables for long, and latt
 function getDistance(lat1, lon1, lat2, lon2, unit) {
@@ -207,9 +201,7 @@ function updateDistanceContainer(unitOfMeasurement) {
   var issX = issArr[0];
   var issY = issArr[1];
 
-  var addressCoordinates = document.getElementById(
-    "address-coordinates"
-  ).textContent;
+  var addressCoordinates = document.getElementById("address-coordinates").textContent;
   var addressArr = addressCoordinates.split(" ");
   var addressX = addressArr[0];
   var addressY = addressArr[1];
