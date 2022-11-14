@@ -100,7 +100,7 @@ var y;
 //Address map
 const map2 = L.map("address-map").setView([lat, long], zoomLevel);
 L.tileLayer("").addTo(map2);
-function updateISS(lat, long) {
+function updateAddress(lat, long) {
   // updates Marker's lat and long on map
   marker.setLatLng([lat, long]);
   // updates map view according to Marker's new position
