@@ -78,19 +78,7 @@ function findISS() {
     })
     .catch((e) => console.log(e));
 }
-function updateISS(lat, long, timestamp, speed, altitude, visibility) {
-  // updates Marker's lat and long on map
-  marker.setLatLng([lat, long]);
-  // updates map view according to Marker's new position
-  map.setView([lat, long]);
-  // updates other element's value
-  latitudeText.innerText = lat;
-  longitudeText.innerText = long;
-  timeText.innerText = timestamp;
-  speedText.innerText = `${speed} km/hr`;
-  altitudeText.innerText = `${altitude} km`;
-  visibilityText.innerText = visibility;
-}
+
 findISS();
 setInterval(findISS, 2000);
 var submitButton = document.getElementById("submitBtn");
