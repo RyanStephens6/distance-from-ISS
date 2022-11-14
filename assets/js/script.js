@@ -85,6 +85,39 @@ var submitButton = document.getElementById("submitBtn");
 var x;
 var y;
 
+//Address map
+
+const map2 = L.map("address-map").setView([lat, long], zoomLevel);
+L.tileLayer("").addTo(map2);
+L.tileLayer(
+    "https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}",
+    {
+      attribution:
+        'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+      maxZoom: 18,
+      id: "mapbox/streets-v11",
+      tileSize: 512,
+      zoomOffset: -1,
+      accessToken:
+        "pk.eyJ1IjoiaDRkM3MiLCJhIjoiY2xhYmVwNHIwMGgyMzNvbnQ0b2M1N2t0diJ9.kq5856BKFbWZ8zaKqbEPrA",
+    }
+  ).addTo(map2);
+  const icon2 = L.icon({
+    iconUrl: "./images/wireframe.png",
+    iconSize: [90, 45],
+    iconAnchor: [25, 94],
+    popupAnchor: [20, -86],
+  });
+  
+
+  function updateAddress(lat, long) {
+    // updates Marker's lat and long on map
+    marker.setLatLng([lat, long]);
+    // updates map view according to Marker's new position
+    map2.setView([lat, long]);
+    L.marker([lat, long], { icon: icon2 }).addTo(map2);
+  }
+
 //This function uses a web API to grab the coordinates of the ISS in real time and store them in an HTML element
 async function getIssCoordinates(issUrl) {
   let response = await fetch(issUrl);
@@ -101,6 +134,7 @@ async function getAddressCoordinates(addressUrl) {
   let addressCoordinates = document.getElementById("address-coordinates");
   addressCoordinates.textContent =
     data.features[0].bbox[1] + " " + data.features[0].bbox[0];
+    updateAddress(data.features[0].bbox[1], data.features[0].bbox[0])
 }
 
 getIssCoordinates("http://api.open-notify.org/iss-now.json");
