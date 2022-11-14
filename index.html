@@ -11,6 +11,23 @@
       integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
       crossorigin="anonymous"
     />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+      integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==
+     "
+      crossorigin=""
+    />
+    <script
+      src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+      integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+      crossorigin=""
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/dayjs@1.11.3/dayjs.min.js"
+      integrity="sha256-iu/zLUB+QgISXBLCW/mcDi/rnf4m4uEDO0wauy76x7U="
+      crossorigin="anonymous"
+    ></script>
     <link rel="stylesheet" href="./assets/css/style.css" />
     <title>Where ISS it?</title>
   </head>
@@ -28,11 +45,12 @@
       <div class="row justify-content-center">
         <!-- User Interactive -->
         <div class="card text-bg-dark col-11 col-lg-5 mx-5">
-          <img
+          <!-- <img
             class="img-fluid"
             src="https://via.placeholder.com/1920x1080"
             alt="video placeholder"
-          />
+          /> -->
+          <div id="address-map"></div>
           <div class="card-img-overlay">
             <h5 class="card-title">Your Location</h5>
             <p class="card-text" id="address-coordinates">Your coordinates</p>
@@ -40,11 +58,44 @@
         </div>
         <!-- ISS -->
         <div class="card text-bg-dark col-11 col-lg-5 mx-5">
-          <img
+          <!-- <img
             class="img-fluid"
             src="https://via.placeholder.com/1920x1080"
             alt="video placeholder"
-          />
+          /> -->
+          <div id="map-div"></div>
+          <div id="details">
+            <!-- Time -->
+            <div>
+              Time:
+              <span class="time"></span>
+            </div>
+            <!-- Latitude -->
+            <div>
+              Latitude:
+              <span class="latitude"></span>
+            </div>
+            <!-- Longitude -->
+            <div>
+              Longitude:
+              <span class="longitude"></span>
+            </div>
+            <!-- Speed -->
+            <div>
+              Speed:
+              <span class="speed"></span>
+            </div>
+            <!-- Altitude -->
+            <div>
+              Altitude:
+              <span class="altitude"></span>
+            </div>
+            <!-- Visibility -->
+            <div>
+              Visibility:
+              <span class="visibility"></span>
+            </div>
+          </div>
           <div class="card-img-overlay">
             <h5 class="card-title">ISS Current Location</h5>
             <p class="card-text" id="iss-coordinates">ISS coordinates</p>
@@ -72,7 +123,7 @@
                 type="radio"
                 name="measurement-unit"
                 id="miles"
-                value="miles"
+                value="Miles"
                 checked
               />
               <label class="form-check-label" for="miles">Miles</label>
@@ -83,7 +134,7 @@
                 type="radio"
                 name="measurement-unit"
                 id="kilometers"
-                value="kilometers"
+                value="Kilometers"
               />
               <label class="form-check-label" for="kilometers"
                 >Kilometers</label
@@ -95,7 +146,7 @@
                 type="radio"
                 name="measurement-unit"
                 id="football-fields"
-                value="football-fields"
+                value="Football Fields"
               />
               <label class="form-check-label" for="football-fields"
                 >Football Fields</label
@@ -128,7 +179,6 @@
       <ul id="userSaved"></ul>
       <!-- The js will create a list item for each saved location -->
     </aside>
-
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script
       src="https://cdn.jsdelivr.net/npm/dayjs@1.11.3/dayjs.min.js"

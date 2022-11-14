@@ -1,14 +1,16 @@
-# tracker-gg-apis
+# Where ISS it
 
 ## Description
 
-The purpose of this project was to create a website that will present you with data about dangerous asteroids that passed by earth on this day in history as well as
+The purpose of this project was to create a website that will allow the user to track the distance between the International Space Station(ISS) and the location of an address the user inputs. In this project we used 2 web API's: One API returns the current coordinates of the ISS, and the other API returns the coordinates of the address the user inputs. Using these coordinates, the website will display the distance between the two locations in miles, kilometers, or football fields!
 
 ## Installation
 
 Open the link in a browser.
 
 ## Usage
+
+To use this website, the user will need to input an address into the "Your Address" field as well as select their perfered unit of measurement.
 
 ## Website Link
 
@@ -18,7 +20,18 @@ Open the link in a browser.
 
 ## Credits
 
-N/A
+### Contributors:
+
+Bobby Rodriguez<br />
+Kevin Tran<br />
+Marcelo Andres Perez<br />
+Ryan Sheridan<br />
+Ryan Stephens
+
+### Web API's:
+
+https://www.geoapify.com/geocoding-api<br />
+http://open-notify.org/Open-Notify-API/ISS-Location-Now/
 
 ## License
 
