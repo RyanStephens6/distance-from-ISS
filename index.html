@@ -24,9 +24,9 @@
     </header>
 
     <!-- Cards for your location and ISS location -->
-    <!-- User Interactive -->
     <section class="d-flex my-5">
       <div class="row justify-content-center">
+        <!-- User Interactive -->
         <div class="card text-bg-dark col-11 col-lg-5 mx-5">
           <img
             class="img-fluid"
@@ -54,11 +54,60 @@
         </div>
       </div>
     </section>
-    <section class="container my-3">
-      <!-- User Input Button -->
-      <div class="row">
-        <div class="text-bg-dark col-5 mx-5">
-          <form action="submit">
+    <section class="container-fluid my-3">
+      <div class="row justify-content-center">
+        <!-- User Input Button -->
+        <div class="text-bg-dark col-4 mx-5 p-1">
+          <form>
+            <div class="form-group">
+              <input
+                type="text"
+                class="form-control"
+                id="address"
+                aria-describedby="address"
+                placeholder="Your Address"
+              />
+            </div>
+            <div class="form-check form-check-inline">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="measurement-unit"
+                id="miles"
+                value="miles"
+                checked
+              />
+              <label class="form-check-label" for="miles">Miles</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="measurement-unit"
+                id="kilometers"
+                value="kilometers"
+              />
+              <label class="form-check-label" for="kilometers"
+                >Kilometers</label
+              >
+            </div>
+            <div class="form-check form-check-inline">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="measurement-unit"
+                id="football-fields"
+                value="football-fields"
+              />
+              <label class="form-check-label" for="football-fields"
+                >Football Fields</label
+              >
+              <button type="button" class="btn btn-secondary" id="submitBtn">
+                Submit
+              </button>
+            </div>
+          </form>
+          <!-- <form action="submit">
             <input
               type="text"
               id="address"
@@ -70,7 +119,7 @@
               id="submitBtn"
               name="addressBtn"
               value="Submit"
-            /><br>
+            /><br />
             <input
               type="radio"
               id="miles"
@@ -92,17 +141,26 @@
               value="Football fields"
             />
             <label for="football-fields">Football fields</label>
-          </form>
+          </form> -->
         </div>
         <!-- Distance Output -->
-        <div class="text-bg-dark col-5 mx-5">
+        <div class="text-bg-dark col-4 mx-5 p-1">
           <form>
-            <input
+            <div class="form-group">
+              <input
+                type="text"
+                class="form-control"
+                id="distance"
+                name="distance"
+                placeholder="It ISS here"
+              />
+            </div>
+            <!-- <input
               type="text"
               id="distance"
               name="distance"
               placeholder="It ISS here"
-            />
+            /> -->
           </form>
           <!-- <p id="distance"></p> -->
         </div>
@@ -110,11 +168,9 @@
     </section>
 
     <aside id="savedBox" class="saved-locations">
-        <h3>Saved Locations</h3>
-        <ul id="userSaved">
-    
-        </ul>
-        <!-- The js will create a list item for each saved location -->
+      <h3>Saved Locations</h3>
+      <ul id="userSaved"></ul>
+      <!-- The js will create a list item for each saved location -->
     </aside>
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
