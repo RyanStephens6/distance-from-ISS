@@ -1,5 +1,3 @@
- Kevin
-
 let latitudeText = document.querySelector(".latitude");
 let longitudeText = document.querySelector(".longitude");
 let timeText = document.querySelector(".time");
@@ -56,8 +54,6 @@ L.tileLayer(
       "pk.eyJ1IjoiaDRkM3MiLCJhIjoiY2xhYmVwNHIwMGgyMzNvbnQ0b2M1N2t0diJ9.kq5856BKFbWZ8zaKqbEPrA",
   }
 ).addTo(map);
-console.log(issData);
-console.log(addressData);
 
 var submitButton = document.getElementById("submitBtn");
 var x;
@@ -165,4 +161,3 @@ function clock() {
 }
 
 setInterval(clock, 1000);
- main
