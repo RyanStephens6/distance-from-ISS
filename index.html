@@ -16,11 +16,11 @@
   </head>
   <body>
     <header
-      class="header text-center bg-dark text-light border border-5 border-dark"
+      class="header text-center bg-dark text-light border border-5 border-dark custom-header"
     >
       <h1 class="title">Where ISS it?</h1>
       <p class="lead">Where is the International Space Station right now?</p>
-      <p id="currentDate"></p>
+      <p id="currentDate">Today's date</p>
     </header>
 
     <!-- Cards for your location and ISS location -->
@@ -35,9 +35,7 @@
           />
           <div class="card-img-overlay">
             <h5 class="card-title">Your Location</h5>
-            <p class="card-text" id="address-coordinates">
-              <small>Your coordinates</small>
-            </p>
+            <p class="card-text" id="address-coordinates">Your coordinates</p>
           </div>
         </div>
         <!-- ISS -->
@@ -58,7 +56,7 @@
       <div class="row justify-content-center">
         <!-- User Input Button -->
         <div class="text-bg-dark col-4 mx-5 p-1">
-          <form>
+          <form action="submit">
             <div class="form-group">
               <input
                 type="text"
