@@ -20,6 +20,14 @@
   border-bottom-left-radius: 3px;
 }
 
+#address-map {
+  width: 800px;
+  height: 350px;
+  box-shadow: 7px -2px 8px -1px rgba(0, 0, 0, 0.7);
+  border-top-right-radius: 3px;
+  border-top-left-radius: 3px;
+}
+
 #address,
 #distance {
   width: 25rem;
