@@ -217,10 +217,15 @@ function updateDistanceContainer(unitOfMeasurement) {
   var distance = getDistance(issX, issY, addressX, addressY, unitOfMeasurement);
   document.getElementById("distance").value = distance.toFixed(2) + " " + unitOfMeasurement;
 
-  var now = dayjs().format('HH:mm on MM DD YYYY')
+  var previousSession = JSON.parse(localStorage.getItem("address")) || [];
+  var now = dayjs().format('HH:mm on MM DD YYYY');
   var userInput = document.getElementById("address").value;
-  string.push({"input": userInput, "distance": distance, "unit": unitOfMeasurement, "time": now});
-  localStorage.setItem("address", JSON.stringify(string));
+  if (previousSession !== null) {
+    previousSession.push({"input": userInput, "distance": distance, "unit": unitOfMeasurement, "time": now});
+  } else {
+    previousSession = {"input": userInput, "distance": distance, "unit": unitOfMeasurement, "time": now}
+  }
+  localStorage.setItem("address", JSON.stringify(previousSession));
 }
 
 //Event listner for form
@@ -233,4 +238,19 @@ function clock() {
   $(currentDate).text(date + ", " + time);
 }
 
+function savedLocations() {
+  var list = document.getElementById("userSaved");
+  var saved = JSON.parse(localStorage.getItem("address")) || [];
+  for (var i = 0; i < saved.length; i++) {
+    if (saved[i] === undefined) {
+    return
+    }
+    var listItem = document.createElement("li");
+    listItem.appendChild(document.createTextNode(saved[i].input + " was " + saved[i].distance + " " + saved[i].unit + " away from the ISS at " + saved[i].time));
+    list.appendChild(listItem);
+  }
+}
+
 setInterval(clock, 1000);
+
+savedLocations();
