@@ -41,8 +41,7 @@
     </header>
 
     <!-- Cards for your location and ISS location -->
-    <!-- User Interactive -->
-    <section class="d-flex my-5">
+    <section class="container-fluid my-5">
       <div class="row justify-content-center">
         <div class="card text-bg-dark col-11 col-lg-5 mx-5">
           <!-- Address Map -->
@@ -94,10 +93,10 @@
               <span class="altitude"></span>
             </div>
             <!-- Visibility -->
-            <div>
+            <!-- <div>
               Visibility:
               <span class="visibility"></span>
-            </div>
+            </div> -->
           </div>
           <div class="card-img-overlay">
             <h5 class="card-title">ISS Current Location</h5>
@@ -111,50 +110,67 @@
       <div class="row">
         <div class="text-bg-dark col-5 mx-5">
           <form action="submit">
-            <input
-              type="text"
-              id="address"
-              name="address"
-              placeholder="Your Address"
-            />
-            <input
-              type="button"
-              id="submitBtn"
-              name="addressBtn"
-              value="Submit"
-            /><br />
-            <input
-              type="radio"
-              id="miles"
-              name="measurement-unit"
-              value="Miles"
-            />
-            <label for="miles">Miles</label>
-            <input
-              type="radio"
-              id="kilometers"
-              name="measurement-unit"
-              value="Kilometers"
-            />
-            <label for="kilometers">Kilometers</label>
-            <input
-              type="radio"
-              id="football-fields"
-              name="measurement-unit"
-              value="Football fields"
-            />
-            <label for="football-fields">Football fields</label>
+            <div class="form-group">
+              <input
+                type="text"
+                class="form-control custom-form"
+                id="address"
+                aria-describedby="address"
+                placeholder="Your Address"
+              />
+            </div>
+            <div class="form-check form-check-inline">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="measurement-unit"
+                id="miles"
+                value="Miles"
+                checked
+              />
+              <label class="form-check-label" for="miles">Miles</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="measurement-unit"
+                id="kilometers"
+                value="Kilometers"
+              />
+              <label class="form-check-label" for="kilometers"
+                >Kilometers</label
+              >
+            </div>
+            <div class="form-check form-check-inline">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="measurement-unit"
+                id="football-fields"
+                value="Football Fields"
+              />
+              <label class="form-check-label" for="football-fields"
+                >Football Fields</label
+              >
+              <button type="button" class="btn btn-secondary" id="submitBtn">
+                Submit
+              </button>
+            </div>
           </form>
         </div>
         <!-- Distance Output -->
         <div class="text-bg-dark col-5 mx-5">
           <form>
-            <input
-              type="text"
-              id="distance"
-              name="distance"
-              placeholder="It ISS here"
-            />
+            <div class="form-group">
+              <input
+                type="text"
+                class="form-control custom-form"
+                id="distance "
+                name="distance"
+                placeholder="It ISS here"
+              />
+            </div>
           </form>
           <!-- <p id="distance"></p> -->
         </div>
