@@ -21,7 +21,6 @@ function updateISS(lat, long, timestamp, speed, altitude, visibility) {
   timeText.innerText = timestamp;
   speedText.innerText = `${speed} km/hr`;
   altitudeText.innerText = `${altitude} km`;
-  visibilityText.innerText = visibility;
 }
 function findISS() {
   fetch(
@@ -56,7 +55,7 @@ L.tileLayer(
   }
 ).addTo(map);
 const icon = L.icon({
-  iconUrl: "./img/iss.png",
+  iconUrl: "./images/12860544.jpg",
   iconSize: [90, 45],
   iconAnchor: [25, 94],
   popupAnchor: [20, -86],
