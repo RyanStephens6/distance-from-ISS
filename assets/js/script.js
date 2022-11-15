@@ -129,16 +129,6 @@ async function getIssCoordinates(issUrl) {
     data.iss_position.latitude + " " + data.iss_position.longitude;
 }
 
-//This function uses a web API to grab the coordinates of an address
-// async function getAddressCoordinates(addressUrl) {
-//     let response = await fetch(addressUrl);
-//     let data = await response.json();
-//     let latitude = data.features[0].bbox[1];
-//     let longitude = data.features[0].bbox[0];
-//     console.log("in gac");
-//     updateAddress(latitude, longitude);
-// }
-
 getIssCoordinates("http://api.open-notify.org/iss-now.json");
 
 //This function takes the address the user input into the submit form and calls the getAddressCoordinates function to find the coordinates of said address. It will also call updateDistanceContainer to display the distance between the ISS and the user address
@@ -160,7 +150,6 @@ function handleSubmitButton() {
     .then((data) => {
         let latitude = data.features[0].bbox[1];
         let longitude = data.features[0].bbox[0];
-        console.log("in gac");
         updateAddress(latitude, longitude);
         var unitSelector = document.getElementsByName("measurement-unit");
         for (let i = 0; i < unitSelector.length; i++) {
