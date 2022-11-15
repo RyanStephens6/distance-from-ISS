@@ -41,15 +41,10 @@
     </header>
 
     <!-- Cards for your location and ISS location -->
-    <section class="d-flex my-5">
+    <section class="container-fluid my-5">
       <div class="row justify-content-center">
         <!-- User Interactive -->
         <div class="card text-bg-dark col-11 col-lg-5 mx-5">
-          <!-- <img
-            class="img-fluid"
-            src="https://via.placeholder.com/1920x1080"
-            alt="video placeholder"
-          /> -->
           <div id="address-map"></div>
           <div class="card-img-overlay">
             <h5 class="card-title">Your Location</h5>
@@ -58,11 +53,6 @@
         </div>
         <!-- ISS -->
         <div class="card text-bg-dark col-11 col-lg-5 mx-5">
-          <!-- <img
-            class="img-fluid"
-            src="https://via.placeholder.com/1920x1080"
-            alt="video placeholder"
-          /> -->
           <div id="map-div"></div>
           <div id="details">
             <!-- Time -->
@@ -91,10 +81,10 @@
               <span class="altitude"></span>
             </div>
             <!-- Visibility -->
-            <div>
+            <!-- <div>
               Visibility:
               <span class="visibility"></span>
-            </div>
+            </div> -->
           </div>
           <div class="card-img-overlay">
             <h5 class="card-title">ISS Current Location</h5>
@@ -111,7 +101,7 @@
             <div class="form-group">
               <input
                 type="text"
-                class="form-control"
+                class="form-control custom-form"
                 id="address"
                 aria-describedby="address"
                 placeholder="Your Address"
@@ -163,8 +153,8 @@
             <div class="form-group">
               <input
                 type="text"
-                class="form-control"
-                id="distance"
+                class="form-control custom-form"
+                id="distance "
                 name="distance"
                 placeholder="It ISS here"
               />
