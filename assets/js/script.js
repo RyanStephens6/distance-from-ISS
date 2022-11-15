@@ -87,7 +87,6 @@ var y;
 var string = [];
 
 //Address map
-
 const map2 = L.map("address-map").setView([lat, long], zoomLevel);
 L.tileLayer("").addTo(map2);
 L.tileLayer(
@@ -111,13 +110,15 @@ L.tileLayer(
   });
   
 
-  function updateAddress(lat, long) {
+function updateAddress(lat, long) {
     // updates Marker's lat and long on map
     marker.setLatLng([lat, long]);
     // updates map view according to Marker's new position
     map2.setView([lat, long]);
     L.marker([lat, long], { icon: icon2 }).addTo(map2);
-  }
+    document.querySelector(".addressLat").textContent = lat;
+    document.querySelector(".addressLong").textContent = long;
+}
 
 //This function uses a web API to grab the coordinates of the ISS in real time and store them in an HTML element
 async function getIssCoordinates(issUrl) {
@@ -133,10 +134,9 @@ function getAddressCoordinates(addressUrl) {
     fetch(addressUrl)
         .then((response) => response.json())
         .then((data) => {
-        let addressCoordinates = document.getElementById("address-coordinates");
-        addressCoordinates.textContent = data.features[0].bbox[1] + " " + data.features[0].bbox[0];
-        console.log(document.getElementById("address-coordinates").textContent);
-        updateAddress(data.features[0].bbox[1], data.features[0].bbox[0]);
+        let latitude = data.features[0].bbox[1];
+        let longitude = data.features[0].bbox[0];
+        updateAddress(latitude, longitude);
     })
 }
 
@@ -144,6 +144,7 @@ getIssCoordinates("http://api.open-notify.org/iss-now.json");
 
 //This function takes the address the user input into the submit form and calls the getAddressCoordinates function to find the coordinates of said address. It will also call updateDistanceContainer to display the distance between the ISS and the user address
 function handleSubmitButton() {
+    //Handles user address input
   var userInput = document.getElementById("address").value;
   var userInputArray = userInput.split(" ");
   var addressUrl = "https://api.geoapify.com/v1/geocode/search?text=";
@@ -156,8 +157,8 @@ function handleSubmitButton() {
   }
   addressUrl += "&apiKey=76f8a5221fbe49a7b156d4fddcaeeaad";
   getAddressCoordinates(addressUrl);
-  console.log(document.getElementById("address-coordinates").textContent);
 
+  //Handles user unit of measurement selection
   var unitSelector = document.getElementsByName("measurement-unit");
   for (let i = 0; i < unitSelector.length; i++) {
     if (unitSelector[i].checked == true) {
@@ -196,17 +197,18 @@ function getDistance(lat1, lon1, lat2, lon2, unit) {
 }
 //This function updates the distance displayed to the user
 function updateDistanceContainer(unitOfMeasurement) {
+    //Grab coordinates to ISS
   var issCoordinates = document.getElementById("iss-coordinates").textContent;
   var issArr = issCoordinates.split(" ");
-  var issX = issArr[0];
-  var issY = issArr[1];
+  var issLatitude = issArr[0];
+  var issLongitude = issArr[1];
 
-  var addressCoordinates = document.getElementById("address-coordinates").textContent;
-  var addressArr = addressCoordinates.split(" ");
-  var addressX = addressArr[0];
-  var addressY = addressArr[1];
+  //Grabs coordinates to the user inputted address
+  var addressLatitude = document.querySelector(".addressLat").textContent;
+  var addressLongitude = document.querySelector(".addressLong").textContent;
 
-  var distance = getDistance(issX, issY, addressX, addressY, unitOfMeasurement);
+  //Calls function to calculate distance and updates the distance displayed to the user
+  var distance = getDistance(issLatitude, issLongitude, addressLatitude, addressLongitude, unitOfMeasurement);
   document.getElementById("distance").value = distance.toFixed(2) + " " + unitOfMeasurement;
 
   var previousSession = JSON.parse(localStorage.getItem("address")) || [];
