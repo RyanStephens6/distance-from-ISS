@@ -33,17 +33,17 @@
   </head>
   <body>
     <header
-      class="header text-center bg-dark text-light border border-5 border-dark custom-header"
+      class="header text-center bg-dark text-light border border-5 border-dark"
     >
       <h1 class="title">Where ISS it?</h1>
       <p class="lead">Where is the International Space Station right now?</p>
-      <p id="currentDate">Today's date</p>
+      <p id="currentDate"></p>
     </header>
 
     <!-- Cards for your location and ISS location -->
+    <!-- User Interactive -->
     <section class="d-flex my-5">
       <div class="row justify-content-center">
-        <!-- User Interactive -->
         <div class="card text-bg-dark col-11 col-lg-5 mx-5">
           <!-- <img
             class="img-fluid"
@@ -53,7 +53,9 @@
           <div id="address-map"></div>
           <div class="card-img-overlay">
             <h5 class="card-title">Your Location</h5>
-            <p class="card-text" id="address-coordinates"></p>
+            <p class="card-text" id="address-coordinates">
+              <small></small>
+            </p>
           </div>
         </div>
         <!-- ISS -->
@@ -103,73 +105,57 @@
         </div>
       </div>
     </section>
-    <section class="container-fluid my-3">
-      <div class="row justify-content-center">
-        <!-- User Input Button -->
-        <div class="text-bg-dark col-4 mx-5 p-1">
+    <section class="container my-3">
+      <!-- User Input Button -->
+      <div class="row">
+        <div class="text-bg-dark col-5 mx-5">
           <form action="submit">
-            <div class="form-group">
-              <input
-                type="text"
-                class="form-control"
-                id="address"
-                aria-describedby="address"
-                placeholder="Your Address"
-              />
-            </div>
-            <div class="form-check form-check-inline">
-              <input
-                class="form-check-input"
-                type="radio"
-                name="measurement-unit"
-                id="miles"
-                value="Miles"
-                checked
-              />
-              <label class="form-check-label" for="miles">Miles</label>
-            </div>
-            <div class="form-check form-check-inline">
-              <input
-                class="form-check-input"
-                type="radio"
-                name="measurement-unit"
-                id="kilometers"
-                value="Kilometers"
-              />
-              <label class="form-check-label" for="kilometers"
-                >Kilometers</label
-              >
-            </div>
-            <div class="form-check form-check-inline">
-              <input
-                class="form-check-input"
-                type="radio"
-                name="measurement-unit"
-                id="football-fields"
-                value="Football Fields"
-              />
-              <label class="form-check-label" for="football-fields"
-                >Football Fields</label
-              >
-              <button type="button" class="btn btn-secondary" id="submitBtn">
-                Submit
-              </button>
-            </div>
+            <input
+              type="text"
+              id="address"
+              name="address"
+              placeholder="Your Address"
+            />
+            <input
+              type="button"
+              id="submitBtn"
+              name="addressBtn"
+              value="Submit"
+            /><br />
+            <input
+              type="radio"
+              id="miles"
+              name="measurement-unit"
+              value="Miles"
+            />
+            <label for="miles">Miles</label>
+            <input
+              type="radio"
+              id="kilometers"
+              name="measurement-unit"
+              value="Kilometers"
+            />
+            <label for="kilometers">Kilometers</label>
+            <input
+              type="radio"
+              id="football-fields"
+              name="measurement-unit"
+              value="Football fields"
+            />
+            <label for="football-fields">Football fields</label>
           </form>
         </div>
         <!-- Distance Output -->
-        <div class="text-bg-dark col-4 mx-5 p-1">
+        <div class="text-bg-dark col-5 mx-5">
           <form>
-            <div class="form-group">
-              <input
-                type="text"
-                class="form-control"
-                id="distance"
-                name="distance"
-                placeholder="It ISS here"
-              />
-            </div>
+            <input
+              type="text"
+              id="distance"
+              name="distance"
+              placeholder="It ISS here"
+            />
           </form>
+          <!-- <p id="distance"></p> -->
         </div>
       </div>
     </section>
