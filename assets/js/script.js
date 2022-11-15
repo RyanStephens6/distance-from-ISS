@@ -130,15 +130,14 @@ async function getIssCoordinates(issUrl) {
 }
 
 //This function uses a web API to grab the coordinates of an address
-function getAddressCoordinates(addressUrl) {
-    fetch(addressUrl)
-        .then((response) => response.json())
-        .then((data) => {
-        let latitude = data.features[0].bbox[1];
-        let longitude = data.features[0].bbox[0];
-        updateAddress(latitude, longitude);
-    })
-}
+// async function getAddressCoordinates(addressUrl) {
+//     let response = await fetch(addressUrl);
+//     let data = await response.json();
+//     let latitude = data.features[0].bbox[1];
+//     let longitude = data.features[0].bbox[0];
+//     console.log("in gac");
+//     updateAddress(latitude, longitude);
+// }
 
 getIssCoordinates("http://api.open-notify.org/iss-now.json");
 
@@ -156,16 +155,21 @@ function handleSubmitButton() {
     addressUrl += "%20" + userInputArray[i];
   }
   addressUrl += "&apiKey=76f8a5221fbe49a7b156d4fddcaeeaad";
-  getAddressCoordinates(addressUrl);
-
-  //Handles user unit of measurement selection
-  var unitSelector = document.getElementsByName("measurement-unit");
-  for (let i = 0; i < unitSelector.length; i++) {
-    if (unitSelector[i].checked == true) {
-      var unitOfMeasurement = unitSelector[i].value;
-    }
-  }
-  updateDistanceContainer(unitOfMeasurement);
+  fetch(addressUrl)
+  .then((response) => response.json())
+    .then((data) => {
+        let latitude = data.features[0].bbox[1];
+        let longitude = data.features[0].bbox[0];
+        console.log("in gac");
+        updateAddress(latitude, longitude);
+        var unitSelector = document.getElementsByName("measurement-unit");
+        for (let i = 0; i < unitSelector.length; i++) {
+            if (unitSelector[i].checked == true) {
+                var unitOfMeasurement = unitSelector[i].value;
+            }
+        }
+        updateDistanceContainer(unitOfMeasurement);
+    })
 }
 
 // need to designate the variables for long, and latt
@@ -190,7 +194,7 @@ function getDistance(lat1, lon1, lat2, lon2, unit) {
       dist = dist * 1.609344;
     }
     if (unit == "Football fields") {
-      dist = dist * 0.8684;
+      dist = dist * 17.6;
     }
     return dist;
   }
@@ -206,6 +210,7 @@ function updateDistanceContainer(unitOfMeasurement) {
   //Grabs coordinates to the user inputted address
   var addressLatitude = document.querySelector(".addressLat").textContent;
   var addressLongitude = document.querySelector(".addressLong").textContent;
+  console.log(addressLongitude);
 
   //Calls function to calculate distance and updates the distance displayed to the user
   var distance = getDistance(issLatitude, issLongitude, addressLatitude, addressLongitude, unitOfMeasurement);
