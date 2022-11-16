@@ -115,8 +115,6 @@ function updateAddress(lat, long) {
     // updates map view according to Marker's new position
     map2.setView([lat, long]);
     L.marker([lat, long], { icon: icon2 }).addTo(map2);
-    document.querySelector(".addressLat").textContent = lat;
-    document.querySelector(".addressLong").textContent = long;
 }
 
 //This function uses a web API to grab the coordinates of the ISS in real time and store them in an HTML element
@@ -149,6 +147,8 @@ function handleSubmitButton() {
     .then((data) => {
         let latitude = data.features[0].bbox[1];
         let longitude = data.features[0].bbox[0];
+        document.querySelector(".addressLat").textContent = latitude;
+        document.querySelector(".addressLong").textContent = longitude;
         updateAddress(latitude, longitude);
         var unitSelector = document.getElementsByName("measurement-unit");
         for (let i = 0; i < unitSelector.length; i++) {
