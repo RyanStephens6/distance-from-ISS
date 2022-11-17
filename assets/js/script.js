@@ -127,6 +127,7 @@ async function getIssCoordinates(issUrl) {
 
 getIssCoordinates("https://api.wheretheiss.at/v1/satellites/25544");
 
+
 //This function takes the address the user input into the submit form and calls the getAddressCoordinates function to find the coordinates of said address. It will also call updateDistanceContainer to display the distance between the ISS and the user address
 function handleSubmitButton() {
     //Handles user address input
