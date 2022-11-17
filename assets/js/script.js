@@ -122,11 +122,10 @@ async function getIssCoordinates(issUrl) {
   let response = await fetch(issUrl);
   let data = await response.json();
   let issCoordinates = document.getElementById("iss-coordinates");
-  issCoordinates.textContent =
-    data.iss_position.latitude + " " + data.iss_position.longitude;
+  issCoordinates.textContent = data.latitude + " " + data.longitude;
 }
 
-getIssCoordinates("http://api.open-notify.org/iss-now.json");
+getIssCoordinates("https://api.wheretheiss.at/v1/satellites/25544");
 
 //This function takes the address the user input into the submit form and calls the getAddressCoordinates function to find the coordinates of said address. It will also call updateDistanceContainer to display the distance between the ISS and the user address
 function handleSubmitButton() {
@@ -208,9 +207,9 @@ function updateDistanceContainer(unitOfMeasurement) {
   var now = dayjs().format('HH:mm on MM DD YYYY');
   var userInput = document.getElementById("address").value;
   if (previousSession !== null) {
-    previousSession.push({"input": userInput, "distance": distance, "unit": unitOfMeasurement, "time": now});
+    previousSession.push({"input": userInput, "location": distance, "unit": unitOfMeasurement, "time": now});
   } else {
-    previousSession = {"input": userInput, "distance": distance, "unit": unitOfMeasurement, "time": now}
+    previousSession = {"input": userInput, "location": distance, "unit": unitOfMeasurement, "time": now}
   }
   localStorage.setItem("address", JSON.stringify(previousSession));
 }
@@ -233,7 +232,7 @@ function savedLocations() {
     return
     }
     var listItem = document.createElement("li");
-    listItem.appendChild(document.createTextNode(saved[i].input + " was " + saved[i].distance + " " + saved[i].unit + " away from the ISS at " + saved[i].time));
+    listItem.appendChild(document.createTextNode(saved[i].input + " was " + saved[i].location + " " + saved[i].unit + " away from the ISS at " + saved[i].time));
     list.appendChild(listItem);
   }
 }
