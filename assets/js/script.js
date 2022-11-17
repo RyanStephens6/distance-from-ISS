@@ -126,7 +126,7 @@ async function getIssCoordinates(issUrl) {
     data.iss_position.latitude + " " + data.iss_position.longitude;
 }
 
-getIssCoordinates("http://api.open-notify.org/iss-now.json");
+getIssCoordinates("https://api.open-notify.org/iss-now.json");
 
 //This function takes the address the user input into the submit form and calls the getAddressCoordinates function to find the coordinates of said address. It will also call updateDistanceContainer to display the distance between the ISS and the user address
 function handleSubmitButton() {
